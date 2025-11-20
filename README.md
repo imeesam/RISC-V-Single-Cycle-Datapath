@@ -1,6 +1,3 @@
-Here’s a structured README Markdown for your Single-Cycle RISC-V Processor project, including a paragraph on your verification, testing, and guidance for adding images with controlled sizes in HTML.
-
----
 
 # Single-Cycle RISC-V Processor (RV32I)
 
