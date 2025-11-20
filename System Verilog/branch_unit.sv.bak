@@ -1,0 +1,20 @@
+module branch_unit (
+    input  logic branch, jump, jalr,
+    input  logic zero,
+    input  logic [31:0] pc, immext, rs1,
+    output logic [31:0] pc_next,
+    output logic take_branch
+);
+    logic [31:0] pc_target;
+
+    assign take_branch = branch & zero;
+
+    always_comb begin
+        if (jalr)
+            pc_target = rs1 + immext;
+        else
+            pc_target = pc + immext;
+
+        pc_next = (jump || take_branch) ? pc_target : (pc + 4);
+    end
+endmodule

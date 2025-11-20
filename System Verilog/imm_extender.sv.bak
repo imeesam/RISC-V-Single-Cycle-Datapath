@@ -1,0 +1,15 @@
+module imm_extender(
+    input  logic [1:0]  immsrc,
+    input  logic [31:0] instr,
+    output logic [31:0] Imm
+);
+    always_comb begin
+        case (immsrc)
+            2'b00: Imm = {{20{instr[31]}}, instr[31:20]};
+            2'b01: Imm = {{20{instr[31]}}, instr[31:25], instr[11:7]};
+            2'b10: Imm = {{19{instr[31]}}, instr[31], instr[7],instr[30:25], instr[11:8], 1'b0};
+            2'b11: Imm = {{11{instr[31]}}, instr[31],instr[19:12], instr[20], instr[30:21], 1'b0};
+				default: Imm = 32'bx;
+        endcase
+    end
+endmodule
